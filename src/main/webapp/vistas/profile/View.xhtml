@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProfileViewDlg" widgetVar="ProfileViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProfileTitle}">
+            <h:form id="ProfileViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{profileController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProfileLabel_idProfile}"/>
+                        <h:outputText value="#{profileController.selected.idProfile}" title="#{bundle.ViewProfileTitle_idProfile}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_createAt}"/>
+                        <h:outputText value="#{profileController.selected.createAt}" title="#{bundle.ViewProfileTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProfileLabel_updateAt}"/>
+                        <h:outputText value="#{profileController.selected.updateAt}" title="#{bundle.ViewProfileTitle_updateAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProfileLabel_deleteAt}"/>
+                        <p:selectBooleanCheckbox value="#{profileController.selected.deleteAt}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_dni}"/>
+                        <h:outputText value="#{profileController.selected.dni}" title="#{bundle.ViewProfileTitle_dni}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_firstname}"/>
+                        <h:outputText value="#{profileController.selected.firstname}" title="#{bundle.ViewProfileTitle_firstname}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_lastname}"/>
+                        <h:outputText value="#{profileController.selected.lastname}" title="#{bundle.ViewProfileTitle_lastname}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_passport}"/>
+                        <h:outputText value="#{profileController.selected.passport}" title="#{bundle.ViewProfileTitle_passport}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_telephone}"/>
+                        <h:outputText value="#{profileController.selected.telephone}" title="#{bundle.ViewProfileTitle_telephone}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_mobile}"/>
+                        <h:outputText value="#{profileController.selected.mobile}" title="#{bundle.ViewProfileTitle_mobile}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_email}"/>
+                        <h:outputText value="#{profileController.selected.email}" title="#{bundle.ViewProfileTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_address}"/>
+                        <h:outputText value="#{profileController.selected.address}" title="#{bundle.ViewProfileTitle_address}"/>
+                        <h:outputText value="#{bundle.ViewProfileLabel_image}"/>
+                        <h:outputText value="#{profileController.selected.image}" title="#{bundle.ViewProfileTitle_image}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProfileViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

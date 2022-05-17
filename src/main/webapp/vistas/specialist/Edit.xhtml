@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SpecialistEditDlg" widgetVar="SpecialistEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSpecialistTitle}">
+            <h:form id="SpecialistEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{specialistController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSpecialistLabel_idSpecialist}" for="idSpecialist" />
+                        <p:inputText id="idSpecialist" value="#{specialistController.selected.idSpecialist}" title="#{bundle.EditSpecialistTitle_idSpecialist}" required="true" requiredMessage="#{bundle.EditSpecialistRequiredMessage_idSpecialist}"/>
+                        <p:outputLabel value="#{bundle.EditSpecialistLabel_medicId}" for="medicId" />
+                        <p:selectOneMenu id="medicId" value="#{specialistController.selected.medicId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicController.itemsAvailableSelectOne}"
+                                           var="medicIdItem"
+                                           itemValue="#{medicIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSpecialistLabel_medicSpecialist}" for="medicSpecialist" />
+                        <p:selectOneMenu id="medicSpecialist" value="#{specialistController.selected.medicSpecialist}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicalspecialisController.itemsAvailableSelectOne}"
+                                           var="medicSpecialistItem"
+                                           itemValue="#{medicSpecialistItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{specialistController.update}" value="#{bundle.Save}" update="display,:SpecialistListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SpecialistEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SpecialistEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

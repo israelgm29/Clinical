@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicalspecialisViewDlg" widgetVar="MedicalspecialisViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMedicalspecialisTitle}">
+            <h:form id="MedicalspecialisViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{medicalspecialisController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMedicalspecialisLabel_id}"/>
+                        <h:outputText value="#{medicalspecialisController.selected.id}" title="#{bundle.ViewMedicalspecialisTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewMedicalspecialisLabel_createAt}"/>
+                        <h:outputText value="#{medicalspecialisController.selected.createAt}" title="#{bundle.ViewMedicalspecialisTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMedicalspecialisLabel_editAt}"/>
+                        <h:outputText value="#{medicalspecialisController.selected.editAt}" title="#{bundle.ViewMedicalspecialisTitle_editAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMedicalspecialisLabel_updateAt}"/>
+                        <h:outputText value="#{medicalspecialisController.selected.updateAt}" title="#{bundle.ViewMedicalspecialisTitle_updateAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMedicalspecialisLabel_delete}"/>
+                        <p:selectBooleanCheckbox value="#{medicalspecialisController.selected.delete}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMedicalspecialisLabel_name}"/>
+                        <h:outputText value="#{medicalspecialisController.selected.name}" title="#{bundle.ViewMedicalspecialisTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewMedicalspecialisLabel_description}"/>
+                        <h:outputText value="#{medicalspecialisController.selected.description}" title="#{bundle.ViewMedicalspecialisTitle_description}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MedicalspecialisViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RpeEditDlg" widgetVar="RpeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRpeTitle}">
+            <h:form id="RpeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{rpeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRpeLabel_idRep}" for="idRep" />
+                        <p:inputText id="idRep" value="#{rpeController.selected.idRep}" title="#{bundle.EditRpeTitle_idRep}" required="true" requiredMessage="#{bundle.EditRpeRequiredMessage_idRep}"/>
+                        <p:outputLabel value="#{bundle.EditRpeLabel_createAt}" for="createAt" />
+                        <p:calendar id="createAt" pattern="HH:mm:ss" value="#{rpeController.selected.createAt}" title="#{bundle.EditRpeTitle_createAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRpeLabel_updateAt}" for="updateAt" />
+                        <p:calendar id="updateAt" pattern="HH:mm:ss" value="#{rpeController.selected.updateAt}" title="#{bundle.EditRpeTitle_updateAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRpeLabel_head}" for="head" />
+                        <p:selectBooleanCheckbox id="head" value="#{rpeController.selected.head}" />
+                        <p:outputLabel value="#{bundle.EditRpeLabel_neck}" for="neck" />
+                        <p:selectBooleanCheckbox id="neck" value="#{rpeController.selected.neck}" />
+                        <p:outputLabel value="#{bundle.EditRpeLabel_chest}" for="chest" />
+                        <p:selectBooleanCheckbox id="chest" value="#{rpeController.selected.chest}" />
+                        <p:outputLabel value="#{bundle.EditRpeLabel_abdomen}" for="abdomen" />
+                        <p:selectBooleanCheckbox id="abdomen" value="#{rpeController.selected.abdomen}" />
+                        <p:outputLabel value="#{bundle.EditRpeLabel_pelvis}" for="pelvis" />
+                        <p:selectBooleanCheckbox id="pelvis" value="#{rpeController.selected.pelvis}" />
+                        <p:outputLabel value="#{bundle.EditRpeLabel_extremities}" for="extremities" />
+                        <p:selectBooleanCheckbox id="extremities" value="#{rpeController.selected.extremities}" />
+                        <p:outputLabel value="#{bundle.EditRpeLabel_observation}" for="observation" />
+                        <p:inputText id="observation" value="#{rpeController.selected.observation}" title="#{bundle.EditRpeTitle_observation}" required="true" requiredMessage="#{bundle.EditRpeRequiredMessage_observation}"/>
+                        <p:outputLabel value="#{bundle.EditRpeLabel_medicalrecordId}" for="medicalrecordId" />
+                        <p:selectOneMenu id="medicalrecordId" value="#{rpeController.selected.medicalrecordId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicalrecordController.itemsAvailableSelectOne}"
+                                           var="medicalrecordIdItem"
+                                           itemValue="#{medicalrecordIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{rpeController.update}" value="#{bundle.Save}" update="display,:RpeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RpeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RpeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

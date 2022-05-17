@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="webjars" name="primeflex/3.1.0/primeflex.css" />
+        <h:outputStylesheet library="css" name="primeflex.css" />
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputScript library="js" name="all.js"/>
+    </h:head>
+    <h:body class="surface-200">
+        <header>
+            <p:growl id="growl" life="3000"  />
+            <ui:include src="../nursing_component/navbar.xhtml"/>
+        </header>
+
+        
+            <ui:insert name="body"/>  
+        
+        <script>
+            $("#menuForm").submit(function (e) {
+                e.preventDefault();
+            });
+        </script>
+    </h:body>
+</html>
+

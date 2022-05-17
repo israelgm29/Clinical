@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicViewDlg" widgetVar="MedicViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMedicTitle}">
+            <h:form id="MedicViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{medicController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMedicLabel_createAt}"/>
+                        <h:outputText value="#{medicController.selected.createAt}" title="#{bundle.ViewMedicTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMedicLabel_editAt}"/>
+                        <h:outputText value="#{medicController.selected.editAt}" title="#{bundle.ViewMedicTitle_editAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMedicLabel_dni}"/>
+                        <h:outputText value="#{medicController.selected.dni}" title="#{bundle.ViewMedicTitle_dni}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_lastname}"/>
+                        <h:outputText value="#{medicController.selected.lastname}" title="#{bundle.ViewMedicTitle_lastname}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_firstname}"/>
+                        <h:outputText value="#{medicController.selected.firstname}" title="#{bundle.ViewMedicTitle_firstname}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_passport}"/>
+                        <h:outputText value="#{medicController.selected.passport}" title="#{bundle.ViewMedicTitle_passport}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_telephone}"/>
+                        <h:outputText value="#{medicController.selected.telephone}" title="#{bundle.ViewMedicTitle_telephone}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_mobile}"/>
+                        <h:outputText value="#{medicController.selected.mobile}" title="#{bundle.ViewMedicTitle_mobile}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_email}"/>
+                        <h:outputText value="#{medicController.selected.email}" title="#{bundle.ViewMedicTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_address}"/>
+                        <h:outputText value="#{medicController.selected.address}" title="#{bundle.ViewMedicTitle_address}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_regprofesional}"/>
+                        <h:outputText value="#{medicController.selected.regprofesional}" title="#{bundle.ViewMedicTitle_regprofesional}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_image}"/>
+                        <h:outputText value="#{medicController.selected.image}" title="#{bundle.ViewMedicTitle_image}"/>
+                        <h:outputText value="#{bundle.ViewMedicLabel_idUser}"/>
+                        <h:outputText value="#{medicController.selected.idUser}" title="#{bundle.ViewMedicTitle_idUser}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MedicViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

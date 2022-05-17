@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PatientEditDlg" class="scalein" width="75%" widgetVar="PatientEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPatientTitle}">
+            <h:form id="PatientEditForm">
+                <h:panelGroup id="display">
+                    <div class="ui-fluid formgrid grid">
+                        <p:divider align="left">
+                            <div class="d-inline-flex ai-center">
+                                <i class="pi pi-heart mr-2 text-pink-500"/>
+                                <b class="text-teal-500">Informacion Medica</b>
+                            </div>
+                        </p:divider>
+
+                        <div class="col-6">
+                            <p:outputLabel value="#{bundle.CreatePatientLabel_bloodtype}" for="bloodtype" />
+
+                            <p:selectOneRadio class="w-bold" id="bloodtype" value="#{patientController.selected.bloodtype}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_bloodtype}" unselectable="true">
+                                <f:selectItem itemLabel="A+" itemValue="A+"/>
+                                <f:selectItem itemLabel="A-" itemValue="A-"/>
+                                <f:selectItem itemLabel="B+" itemValue="B+"/>
+                                <f:selectItem itemLabel="B-" itemValue="B-"/>
+                                <f:selectItem itemLabel="O+" itemValue="O+"/>
+                                <f:selectItem itemLabel="O-" itemValue="O-"/>
+                                <f:selectItem itemLabel="AB+" itemValue="AB+"/>
+                                <f:selectItem itemLabel="AB-" itemValue="AB-"/>
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="col-6">
+                            <div class="flex justify-content-center">
+                                Historia Clinica : <p:outputLabel value="#{patientController.selected.hc}"/> 
+                                <img class="border-circle " width="60px" height="60px" src="#{patientController.selected.image}"/>
+                            </div>
+                        </div>
+                        <p:divider align="left">
+                            <div class="inline-flex ai-center">
+                                <i class="pi pi-tags mr-2 "/>
+                                <b class="text-teal-500">Información Personal</b>
+                            </div>
+                        </p:divider>
+                        <div class="formgrid grid">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_lastname}" for="lastname" />
+                                <p:inputText class="form-control" id="lastname" value="#{patientController.selected.lastname}" title="#{bundle.CreatePatientTitle_lastname}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_lastname}"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_firstname}" for="firstname" />
+                                <p:inputText class="form-control" id="firstname" value="#{patientController.selected.firstname}" title="#{bundle.CreatePatientTitle_firstname}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_firstname}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_birthday}"  />
+                                <p:calendar id="birthday" pattern="MM/dd/yyyy" value="#{patientController.selected.birthday}" title="#{bundle.EditPatientTitle_birthday}" required="true" requiredMessage="#{bundle.EditPatientRequiredMessage_birthday}"   />
+
+                            </div>
+                            <div class="field col-12 md:col-2">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_dni}" for="dni" />
+                                <p:inputMask mask="9999999999" validateMask="true" class="form-control" id="dni" value="#{patientController.selected.dni}" title="#{bundle.CreatePatientTitle_dni}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_dni}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-2">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_passport}" for="passport" />
+                                <p:inputText class="form-control" id="passport" value="#{patientController.selected.passport}" title="#{bundle.CreatePatientTitle_passport}" />
+
+                            </div>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel  value="#{bundle.CreatePatientLabel_sex}" for="sex" />
+                                <p:selectOneMenu class="form-select"  id="sex" value="#{patientController.selected.sex}" title="#{bundle.CreatePatientTitle_sex}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_sex}">
+                                    <f:selectItem itemDisabled="true" itemLabel="Seleccionar"/>
+                                    <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                                    <f:selectItem itemValue="Femenino" itemLabel="Femenino"/>
+                                    <f:selectItem itemValue="Otro" itemLabel="Otro"/>
+                                </p:selectOneMenu>
+
+                            </div>
+                            <div class="field col-12 md:col-2">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_civilstatus}" for="civilstatus" />
+                                <p:selectOneMenu class="form-select" id="civilstatus" value="#{patientController.selected.civilstatus}" title="#{bundle.CreatePatientTitle_civilstatus}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_civilstatus}">
+                                    <f:selectItem itemDisabled="true" itemLabel="Seleccionar"/>
+                                    <f:selectItem itemValue="Soltero" itemLabel="Soltero/a"/>
+                                    <f:selectItem itemValue="Casado" itemLabel="Casado/a"/>
+                                    <f:selectItem itemValue="Divorciado" itemLabel="Divorciado/a"/>
+                                    <f:selectItem itemValue="Viudo" itemLabel="Viudo/a"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="field col-12 md:col-12">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_ocupation}" for="ocupation" />
+                                <p:inputText class="form-control" id="ocupation" value="#{patientController.selected.ocupation}" title="#{bundle.CreatePatientTitle_ocupation}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_ocupation}"/>
+
+                            </div>
+                            <p:divider align="left">
+                                <div class="d-inline-flex ai-center">
+                                    <i class="pi pi-user text-primary"/>
+                                    <b class="text-teal-500">Información de Contacto</b>
+                                </div>
+                            </p:divider>
+
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_email}" for="email" />
+                                <p:inputText class="form-control" id="email" value="#{patientController.selected.email}" title="#{bundle.CreatePatientTitle_email}" />
+
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_telephone}" for="telephone" />
+                                <p:inputMask mask="(999)999-9999" maxlength="13" validateMask="false" class="form-control" id="telephone" value="#{patientController.selected.telephone}" title="#{bundle.CreatePatientTitle_telephone}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_telephone}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_mobile}" for="mobile" />
+                                <p:inputMask mask="(999)999-9999" maxlength="13" validateMask="false" class="form-control" id="mobile" value="#{patientController.selected.mobile}" title="#{bundle.CreatePatientTitle_mobile}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_mobile}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-12">
+                                <p:outputLabel value="#{bundle.CreatePatientLabel_address}" for="address" />
+                                <p:inputTextarea class="form-control " rows="4" cols="20" id="address" value="#{patientController.selected.address}" title="#{bundle.CreatePatientTitle_address}" required="true" requiredMessage="#{bundle.CreatePatientRequiredMessage_address}"/>
+
+                            </div>
+                            <p:divider align="left">
+                                <div class="d-inline-flex ai-center">
+                                    <i class="pi pi-camera mr-2"/>
+                                    <b class="text-teal-500">Añadir Imagen del Paciente</b>
+                                </div>
+                            </p:divider>
+                            <p:fileUpload value="#{patientController.file}" mode="simple" skinSimple="true" 
+                                          update="growl"
+                                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                          validateContentType="true" accept=".gif,.jpg,.jpeg,.png"
+                                          label="Seleccionar"/>
+                        </div>
+                        <p:divider></p:divider> 
+                        <div class="col-12 flex flex-row-reverse flex-wrap">
+                            <div class="flex align-items-center justify-content-center">
+                                <p:commandButton actionListener="#{patientController.update}" value="#{bundle.Save}" update="display,:PatientListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PatientEditDialog');"/>
+                            </div>
+                            <div class="flex align-items-center justify-content-center m-2">
+                                <p:commandButton  class="ms-2 ui-button-raised ui-button-flat" value="Limpiar" icon="pi pi-undo">
+                                    <p:ajax update="PatientCreateForm" resetValues="true"/>
+                                </p:commandButton>
+                            </div>
+                        </div>
+                    </div>
+
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

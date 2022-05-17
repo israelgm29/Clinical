@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AtecedentEditDlg" widgetVar="AtecedentEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAtecedentTitle}">
+            <h:form id="AtecedentEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{atecedentController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_idAntecedent}" for="idAntecedent" />
+                        <p:inputText id="idAntecedent" value="#{atecedentController.selected.idAntecedent}" title="#{bundle.EditAtecedentTitle_idAntecedent}" required="true" requiredMessage="#{bundle.EditAtecedentRequiredMessage_idAntecedent}"/>
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_createAt}" for="createAt" />
+                        <p:calendar id="createAt" pattern="HH:mm:ss" value="#{atecedentController.selected.createAt}" title="#{bundle.EditAtecedentTitle_createAt}" required="true" requiredMessage="#{bundle.EditAtecedentRequiredMessage_createAt}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_updateAt}" for="updateAt" />
+                        <p:calendar id="updateAt" pattern="HH:mm:ss" value="#{atecedentController.selected.updateAt}" title="#{bundle.EditAtecedentTitle_updateAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_personalAnt}" for="personalAnt" />
+                        <p:inputText id="personalAnt" value="#{atecedentController.selected.personalAnt}" title="#{bundle.EditAtecedentTitle_personalAnt}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_surgicalAnt}" for="surgicalAnt" />
+                        <p:inputText id="surgicalAnt" value="#{atecedentController.selected.surgicalAnt}" title="#{bundle.EditAtecedentTitle_surgicalAnt}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_damilyAnt}" for="damilyAnt" />
+                        <p:inputText id="damilyAnt" value="#{atecedentController.selected.damilyAnt}" title="#{bundle.EditAtecedentTitle_damilyAnt}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_profesionalAnt}" for="profesionalAnt" />
+                        <p:inputText id="profesionalAnt" value="#{atecedentController.selected.profesionalAnt}" title="#{bundle.EditAtecedentTitle_profesionalAnt}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_habit}" for="habit" />
+                        <p:inputText id="habit" value="#{atecedentController.selected.habit}" title="#{bundle.EditAtecedentTitle_habit}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_clinical}" for="clinical" />
+                        <p:inputText id="clinical" value="#{atecedentController.selected.clinical}" title="#{bundle.EditAtecedentTitle_clinical}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_trauma}" for="trauma" />
+                        <p:inputText id="trauma" value="#{atecedentController.selected.trauma}" title="#{bundle.EditAtecedentTitle_trauma}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_allergy}" for="allergy" />
+                        <p:inputText id="allergy" value="#{atecedentController.selected.allergy}" title="#{bundle.EditAtecedentTitle_allergy}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_ago}" for="ago" />
+                        <p:inputText id="ago" value="#{atecedentController.selected.ago}" title="#{bundle.EditAtecedentTitle_ago}" />
+                        <p:outputLabel value="#{bundle.EditAtecedentLabel_patientId}" for="patientId" />
+                        <p:selectOneMenu id="patientId" value="#{atecedentController.selected.patientId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{patientController.itemsAvailableSelectOne}"
+                                           var="patientIdItem"
+                                           itemValue="#{patientIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{atecedentController.update}" value="#{bundle.Save}" update="display,:AtecedentListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AtecedentEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AtecedentEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

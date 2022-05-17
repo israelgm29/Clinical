@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PermisionCreateDlg" widgetVar="PermisionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePermisionTitle}">
+            <h:form id="PermisionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{permisionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePermisionLabel_idPermision}" for="idPermision" />
+                        <p:inputText id="idPermision" value="#{permisionController.selected.idPermision}" title="#{bundle.CreatePermisionTitle_idPermision}" required="true" requiredMessage="#{bundle.CreatePermisionRequiredMessage_idPermision}"/>
+                        <p:outputLabel value="#{bundle.CreatePermisionLabel_cre}" for="cre" />
+                        <p:selectBooleanCheckbox id="cre" value="#{permisionController.selected.cre}" />
+                        <p:outputLabel value="#{bundle.CreatePermisionLabel_re}" for="re" />
+                        <p:selectBooleanCheckbox id="re" value="#{permisionController.selected.re}" />
+                        <p:outputLabel value="#{bundle.CreatePermisionLabel_up}" for="up" />
+                        <p:selectBooleanCheckbox id="up" value="#{permisionController.selected.up}" />
+                        <p:outputLabel value="#{bundle.CreatePermisionLabel_wri}" for="wri" />
+                        <p:selectBooleanCheckbox id="wri" value="#{permisionController.selected.wri}" />
+                        <p:outputLabel value="#{bundle.CreatePermisionLabel_moduleId}" for="moduleId" />
+                        <p:selectOneMenu id="moduleId" value="#{permisionController.selected.moduleId}" >
+                            <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"
+                                           var="moduleIdItem"
+                                           itemValue="#{moduleIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePermisionLabel_roleId}" for="roleId" />
+                        <p:selectOneMenu id="roleId" value="#{permisionController.selected.roleId}" >
+                            <f:selectItems value="#{roleController.itemsAvailableSelectOne}"
+                                           var="roleIdItem"
+                                           itemValue="#{roleIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{permisionController.create}" value="#{bundle.Save}" update="display,:PermisionListForm:datalist,:growl" oncomplete="handleSubmit(args,'PermisionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PermisionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

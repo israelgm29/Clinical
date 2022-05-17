@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicalrecordEditDlg" widgetVar="MedicalrecordEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMedicalrecordTitle}">
+            <h:form id="MedicalrecordEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{medicalrecordController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_idMedicalrecord}" for="idMedicalrecord" />
+                        <p:inputText id="idMedicalrecord" value="#{medicalrecordController.selected.idMedicalrecord}" title="#{bundle.EditMedicalrecordTitle_idMedicalrecord}" required="true" requiredMessage="#{bundle.EditMedicalrecordRequiredMessage_idMedicalrecord}"/>
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_createAt}" for="createAt" />
+                        <p:calendar id="createAt" pattern="HH:mm:ss" value="#{medicalrecordController.selected.createAt}" title="#{bundle.EditMedicalrecordTitle_createAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_editAt}" for="editAt" />
+                        <p:calendar id="editAt" pattern="HH:mm:ss" value="#{medicalrecordController.selected.editAt}" title="#{bundle.EditMedicalrecordTitle_editAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_delete}" for="delete" />
+                        <p:selectBooleanCheckbox id="delete" value="#{medicalrecordController.selected.delete}" />
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_reason}" for="reason" />
+                        <p:inputText id="reason" value="#{medicalrecordController.selected.reason}" title="#{bundle.EditMedicalrecordTitle_reason}" required="true" requiredMessage="#{bundle.EditMedicalrecordRequiredMessage_reason}"/>
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_currentIllness}" for="currentIllness" />
+                        <p:inputText id="currentIllness" value="#{medicalrecordController.selected.currentIllness}" title="#{bundle.EditMedicalrecordTitle_currentIllness}" required="true" requiredMessage="#{bundle.EditMedicalrecordRequiredMessage_currentIllness}"/>
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_done}" for="done" />
+                        <p:selectBooleanCheckbox id="done" value="#{medicalrecordController.selected.done}" />
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_canceled}" for="canceled" />
+                        <p:selectBooleanCheckbox id="canceled" value="#{medicalrecordController.selected.canceled}" />
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_medicId}" for="medicId" />
+                        <p:selectOneMenu id="medicId" value="#{medicalrecordController.selected.medicId}" required="true" requiredMessage="#{bundle.EditMedicalrecordRequiredMessage_medicId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicController.itemsAvailableSelectOne}"
+                                           var="medicIdItem"
+                                           itemValue="#{medicIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMedicalrecordLabel_patientId}" for="patientId" />
+                        <p:selectOneMenu id="patientId" value="#{medicalrecordController.selected.patientId}" required="true" requiredMessage="#{bundle.EditMedicalrecordRequiredMessage_patientId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{patientController.itemsAvailableSelectOne}"
+                                           var="patientIdItem"
+                                           itemValue="#{patientIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{medicalrecordController.update}" value="#{bundle.Save}" update="display,:MedicalrecordListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MedicalrecordEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MedicalrecordEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

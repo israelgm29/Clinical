@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form id="menuForm">
+        <p:menubar class="border-0">
+            <p:menuitem value="#{bundle.Home}" outcome="/vistas/Nursing/Home.xhtml" icon="ui-icon-home"  immediate="true">
+                <f:ajax execute="@form" render="@none"/>
+            </p:menuitem>
+
+            <p:submenu label="Signos Vitales"  icon="fa-solid fa-heart-pulse text-pink-500">
+                <p:submenu class="w-auto" label="Registrar" >
+                    <p:menuitem value="Signos" outcome="/vistas/Nursing/Nursing_VitalSign.xhtml"  icon="fa-solid fa-heart"/>
+                </p:submenu>
+
+                <p:divider />
+
+                <p:submenu label="Consultar" >
+                    <p:menuitem value="Fichas Medicas" outcome="/vistas/Nursing/Home.xhtml" icon="fa-solid fa-hospital-user"/>
+                    <p:menuitem value="Signos Vitales" outcome="/vistas/Nursing/ListSign.xhtml" icon="fa-solid fa-heart"/>
+                </p:submenu>
+            </p:submenu>
+
+
+            <p:divider layout="vertical"/>
+
+
+
+            <f:facet  name="options">
+                <p:avatar  label="#{userlog.idProfile.firstname} #{userlog.idProfile.lastname}" id="dynaButton" class="cursor-pointer" size="large" shape="circle" />
+                <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
+                    <p:submenu label="Cuenta">
+                        <p:menuitem value="Tu perfil"  update="growl" ajax="false"
+                                    icon="pi pi-save"/>
+                        <p:menuitem value="Configurar"  update="growl" icon="pi pi-refresh"/>
+
+                    </p:submenu>
+                    <p:submenu label="Navigations">
+                        <p:menuitem value="Cerrar Sesion"  icon="pi pi-upload"/>
+                    </p:submenu>
+                </p:menu>
+            </f:facet>
+        </p:menubar>
+    </h:form>
+</ui:composition>
+

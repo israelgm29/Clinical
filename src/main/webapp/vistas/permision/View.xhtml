@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PermisionViewDlg" widgetVar="PermisionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPermisionTitle}">
+            <h:form id="PermisionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{permisionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPermisionLabel_idPermision}"/>
+                        <h:outputText value="#{permisionController.selected.idPermision}" title="#{bundle.ViewPermisionTitle_idPermision}"/>
+                        <h:outputText value="#{bundle.ViewPermisionLabel_cre}"/>
+                        <p:selectBooleanCheckbox value="#{permisionController.selected.cre}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPermisionLabel_re}"/>
+                        <p:selectBooleanCheckbox value="#{permisionController.selected.re}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPermisionLabel_up}"/>
+                        <p:selectBooleanCheckbox value="#{permisionController.selected.up}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPermisionLabel_wri}"/>
+                        <p:selectBooleanCheckbox value="#{permisionController.selected.wri}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPermisionLabel_moduleId}"/>
+                        <h:outputText value="#{permisionController.selected.moduleId}" title="#{bundle.ViewPermisionTitle_moduleId}"/>
+                        <h:outputText value="#{bundle.ViewPermisionLabel_roleId}"/>
+                        <h:outputText value="#{permisionController.selected.roleId}" title="#{bundle.ViewPermisionTitle_roleId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PermisionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VitalsignViewDlg" widgetVar="VitalsignViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewVitalsignTitle}">
+            <h:form id="VitalsignViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vitalsignController.selected != null}">
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_idVitalsig}"/>
+                        <h:outputText value="#{vitalsignController.selected.idVitalsig}" title="#{bundle.ViewVitalsignTitle_idVitalsig}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_createdAt}"/>
+                        <h:outputText value="#{vitalsignController.selected.createdAt}" title="#{bundle.ViewVitalsignTitle_createdAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_updateAt}"/>
+                        <h:outputText value="#{vitalsignController.selected.updateAt}" title="#{bundle.ViewVitalsignTitle_updateAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_temperature}"/>
+                        <h:outputText value="#{vitalsignController.selected.temperature}" title="#{bundle.ViewVitalsignTitle_temperature}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_systolicpresure}"/>
+                        <h:outputText value="#{vitalsignController.selected.systolicpresure}" title="#{bundle.ViewVitalsignTitle_systolicpresure}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_diastolicpresure}"/>
+                        <h:outputText value="#{vitalsignController.selected.diastolicpresure}" title="#{bundle.ViewVitalsignTitle_diastolicpresure}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_pulse}"/>
+                        <h:outputText value="#{vitalsignController.selected.pulse}" title="#{bundle.ViewVitalsignTitle_pulse}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_breathingfrecuency}"/>
+                        <h:outputText value="#{vitalsignController.selected.breathingfrecuency}" title="#{bundle.ViewVitalsignTitle_breathingfrecuency}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_oxygensaturation}"/>
+                        <h:outputText value="#{vitalsignController.selected.oxygensaturation}" title="#{bundle.ViewVitalsignTitle_oxygensaturation}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_tall}"/>
+                        <h:outputText value="#{vitalsignController.selected.tall}" title="#{bundle.ViewVitalsignTitle_tall}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_weight}"/>
+                        <h:outputText value="#{vitalsignController.selected.weight}" title="#{bundle.ViewVitalsignTitle_weight}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_mass}"/>
+                        <h:outputText value="#{vitalsignController.selected.mass}" title="#{bundle.ViewVitalsignTitle_mass}"/>
+                        <h:outputText value="#{bundle.ViewVitalsignLabel_medicalrecordId}"/>
+                        <h:outputText value="#{vitalsignController.selected.medicalrecordId}" title="#{bundle.ViewVitalsignTitle_medicalrecordId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="VitalsignViewDialog.hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMedicalrecordTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="MedicalrecordListForm">
+                <p:panel header="#{bundle.ListMedicalrecordTitle}">
+                    <p:dataTable id="datalist" value="#{medicalrecordController.items}" var="item"
+                                 selectionMode="single" selection="#{medicalrecordController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idMedicalrecord}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_idMedicalrecord}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMedicalrecord}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_createAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createAt}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_editAt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.editAt}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_delete}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.delete}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_reason}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reason}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_currentIllness}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.currentIllness}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_done}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.done}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_canceled}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.canceled}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_medicId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.medicId.firstname} #{item.medicId.lastname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalrecordTitle_patientId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.patientId.firstname} #{item.patientId.lastname}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{medicalrecordController.prepareCreate}" update=":MedicalrecordCreateForm" oncomplete="PF('MedicalrecordCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MedicalrecordViewForm" oncomplete="PF('MedicalrecordViewDialog').show()" disabled="#{empty medicalrecordController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MedicalrecordEditForm" oncomplete="PF('MedicalrecordEditDialog').show()" disabled="#{empty medicalrecordController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{medicalrecordController.destroy}" update=":growl,datalist" disabled="#{empty medicalrecordController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

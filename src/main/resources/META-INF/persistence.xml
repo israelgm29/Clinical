@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <!-- Define Persistence Unit -->
+  <persistence-unit name="my_persistence_unit" transaction-type="JTA">
+    <jta-data-source>java:app/ewqeq</jta-data-source>
+    <class>entidades.Examtype</class>
+    <class>entidades.Permision</class>
+    <class>entidades.Specialist</class>
+    <class>entidades.Medicalexam</class>
+    <class>entidades.Rpe</class>
+    <class>entidades.Role</class>
+    <class>entidades.Cross</class>
+    <class>entidades.Disease</class>
+    <class>entidades.Patient</class>
+    <class>entidades.Medic</class>
+    <class>entidades.Profile</class>
+    <class>entidades.Atecedent</class>
+    <class>entidades.Medicalspecialis</class>
+    <class>entidades.Medicalrecord</class>
+    <class>entidades.Exam</class>
+    <class>entidades.Diagnostic</class>
+    <class>entidades.Diseasetype</class>
+    <class>entidades.Tuser</class>
+    <class>entidades.Module</class>
+    <class>entidades.Vitalsign</class>
+    <class>entidades.Pais</class>
+    <class>entidades.Usuario</class>
+    <class>entidades.Adminrol</class>
+    <class>entidades.Lugar</class>
+    <class>entidades.Categoria</class>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ExamtypeViewDlg" widgetVar="ExamtypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewExamtypeTitle}">
+            <h:form id="ExamtypeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{examtypeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewExamtypeLabel_idExamtype}"/>
+                        <h:outputText value="#{examtypeController.selected.idExamtype}" title="#{bundle.ViewExamtypeTitle_idExamtype}"/>
+                        <h:outputText value="#{bundle.ViewExamtypeLabel_name}"/>
+                        <h:outputText value="#{examtypeController.selected.name}" title="#{bundle.ViewExamtypeTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewExamtypeLabel_createAt}"/>
+                        <h:outputText value="#{examtypeController.selected.createAt}" title="#{bundle.ViewExamtypeTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewExamtypeLabel_updateAt}"/>
+                        <h:outputText value="#{examtypeController.selected.updateAt}" title="#{bundle.ViewExamtypeTitle_updateAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ExamtypeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

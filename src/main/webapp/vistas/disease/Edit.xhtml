@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiseaseEditDlg" widgetVar="DiseaseEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDiseaseTitle}">
+            <h:form id="DiseaseEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diseaseController.selected != null}">
+                       <p:outputLabel value="#{bundle.EditDiseaseLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{diseaseController.selected.code}" title="#{bundle.EditDiseaseTitle_code}" required="true" requiredMessage="#{bundle.EditDiseaseRequiredMessage_code}"/>
+                        <p:outputLabel value="#{bundle.EditDiseaseLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{diseaseController.selected.name}" title="#{bundle.EditDiseaseTitle_name}" required="true" requiredMessage="#{bundle.EditDiseaseRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.EditDiseaseLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{diseaseController.selected.description}" title="#{bundle.EditDiseaseTitle_description}" required="true" requiredMessage="#{bundle.EditDiseaseRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.EditDiseaseLabel_actions}" for="actions" />
+                        <p:inputText id="actions" value="#{diseaseController.selected.actions}" title="#{bundle.EditDiseaseTitle_actions}" required="true" requiredMessage="#{bundle.EditDiseaseRequiredMessage_actions}"/>
+                        <p:outputLabel value="#{bundle.EditDiseaseLabel_diseaseId}" for="diseaseId" />
+                        <p:selectOneMenu id="diseaseId" value="#{diseaseController.selected.diseaseId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{diseasetypeController.itemsAvailableSelectOne}"
+                                           var="diseaseIdItem"
+                                           itemValue="#{diseaseIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{diseaseController.update}" value="#{bundle.Save}" update="display,:DiseaseListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiseaseEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DiseaseEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

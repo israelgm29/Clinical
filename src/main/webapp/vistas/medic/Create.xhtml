@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicCreateDlg" widgetVar="MedicCreateDialog" width="75%" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMedicTitle}">
+            <h:form id="MedicCreateForm" enctype="multipart/form-data">
+                <h:panelGroup id="display">
+                    <div class="ui-fluid formgrid grid">
+                        <p:divider align="left">
+                            <div class="inline-flex ai-center">
+                                <i class="pi pi-tags mr-2 "/>
+                                <b class="text-teal-500">Información Personal</b>
+                            </div>
+                        </p:divider>
+                        <div class="formgrid grid">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_lastname}" for="lastname" />
+                                <p:inputText id="lastname" value="#{medicController.selected.lastname}" title="#{bundle.CreateMedicTitle_lastname}" required="true" requiredMessage="#{bundle.CreateMedicRequiredMessage_lastname}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_firstname}" for="firstname" />
+                                <p:inputText id="firstname" value="#{medicController.selected.firstname}" title="#{bundle.CreateMedicTitle_firstname}" required="true" requiredMessage="#{bundle.CreateMedicRequiredMessage_firstname}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_dni}" for="dni" />
+                                <p:inputText id="dni" value="#{medicController.selected.dni}" title="#{bundle.CreateMedicTitle_dni}" />
+
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_passport}" for="passport" />
+                                <p:inputText id="passport" value="#{medicController.selected.passport}" title="#{bundle.CreateMedicTitle_passport}" />
+                            </div>                      
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_regprofesional}" for="regprofesional" />
+                                <p:inputText id="regprofesional" value="#{medicController.selected.regprofesional}" title="#{bundle.CreateMedicTitle_regprofesional}" required="true" requiredMessage="#{bundle.CreateMedicRequiredMessage_regprofesional}"/>
+
+                            </div>
+                            <p:divider align="left">
+                                <div class="d-inline-flex ai-center">
+                                    <i class="pi pi-user text-primary"/>
+                                    <b class="text-teal-500">Información de Contacto</b>
+                                </div>
+                            </p:divider>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_telephone}" for="telephone" />
+                                <p:inputText id="telephone" value="#{medicController.selected.telephone}" title="#{bundle.CreateMedicTitle_telephone}" />
+
+                            </div>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_mobile}" for="mobile" />
+                                <p:inputText id="mobile" value="#{medicController.selected.mobile}" title="#{bundle.CreateMedicTitle_mobile}" required="true" requiredMessage="#{bundle.CreateMedicRequiredMessage_mobile}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_email}" for="email" />
+                                <p:inputText id="email" value="#{medicController.selected.email}" title="#{bundle.CreateMedicTitle_email}" required="true" requiredMessage="#{bundle.CreateMedicRequiredMessage_email}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-12">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_address}" for="address" />
+                                <p:inputTextarea id="address" value="#{medicController.selected.address}" title="#{bundle.CreateMedicTitle_address}" required="true" requiredMessage="#{bundle.CreateMedicRequiredMessage_address}"/>
+
+                            </div>
+                            <p:divider align="left">
+                                <div class="d-inline-flex ai-center">
+                                    <i class="pi pi-camera mr-2"/>
+                                    <b class="text-teal-500">Añadir Imagen del Paciente</b>
+                                </div>
+                            </p:divider>
+                            <div class="field col-12 md:col-12">
+                                <p:outputLabel value="#{bundle.CreateMedicLabel_image}" for="image" />
+                                <p:fileUpload id="image" value="#{medicController.file}" mode="simple" skinSimple="true" 
+                                              update="growl"
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                              validateContentType="true" accept=".gif,.jpg,.jpeg,.png"
+                                              label="Seleccionar"/>
+                            </div>
+                            <p:divider></p:divider> 
+                            <div class="col-12 flex flex-row-reverse flex-wrap">
+                                <div class="flex align-items-center justify-content-center">
+                                    <p:commandButton actionListener="#{medicController.create}" value="#{bundle.Save}" update="display,:MedicListForm:datalist,:growl" oncomplete="handleSubmit(args,'MedicCreateDialog');"/>
+                                </div>
+                                <div class="flex align-items-center justify-content-center m-2">
+                                    <p:commandButton  class="ms-2 ui-button-raised ui-button-flat" value="Limpiar" icon="pi pi-undo">
+                                        <p:ajax update="MedicCreateForm" resetValues="true"/>
+                                    </p:commandButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet library="webjars" name="primeflex/3.1.0/primeflex.css" />
+        <h:outputStylesheet library="css" name="primeflex.css" />
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:link outcome="vistas/atecedent/List" value="Show All Atecedent Items"/>
+        <br />
+        <h:link outcome="vistas/cross/List" value="Show All Cross Items"/>
+        <br />
+        <h:link outcome="vistas/diagnostic/List" value="Show All Diagnostic Items"/>
+        <br />
+        <h:link outcome="vistas/disease/List" value="Show All Disease Items"/>
+        <br />
+        <h:link outcome="vistas/diseasetype/List" value="Show All Diseasetype Items"/>
+        <br />
+        <h:link outcome="vistas/exam/List" value="Show All Exam Items"/>
+        <br />
+        <h:link outcome="vistas/examtype/List" value="Show All Examtype Items"/>
+        <br />
+        <h:link outcome="vistas/medic/List" value="Show All Medic Items"/>
+        <br />
+        <h:link outcome="vistas/medicalexam/List" value="Show All Medicalexam Items"/>
+        <br />
+        <h:link outcome="vistas/medicalrecord/List" value="Show All Medicalrecord Items"/>
+        <br />
+        <h:link outcome="vistas/medicalspecialis/List" value="Show All Medicalspecialis Items"/>
+        <br />
+        <h:link outcome="vistas/module/List" value="Show All Module Items"/>
+        <br />
+        <h:link outcome="vistas/patient/List" value="Show All Patient Items"/>
+        <br />
+        <h:link outcome="vistas/permision/List" value="Show All Permision Items"/>
+        <br />
+        <h:link outcome="vistas/profile/List" value="Show All Profile Items"/>
+        <br />
+        <h:link outcome="vistas/role/List" value="Show All Role Items"/>
+        <br />
+        <h:link outcome="vistas/rpe/List" value="Show All Rpe Items"/>
+        <br />
+        <h:link outcome="vistas/specialist/List" value="Show All Specialist Items"/>
+        <br />
+        <h:link outcome="vistas/tuser/List" value="Show All Tuser Items"/>
+        <br />
+        <h:link outcome="vistas/vitalsign/List" value="Show All Vitalsign Items"/>
+        <div class="card">
+    <h5>Basic</h5>
+    <p:inputText/>
+
+    <h5>Floating Label</h5>
+    <span class="ui-float-label">
+       <p:inputText id="float-input" value="#{inputTextView.text}"/>
+       <p:outputLabel for="@previous" value="Username"/>
+   </span>
+
+    <h5>Left Icon</h5>
+    <span class="ui-input-icon-left">
+        <i class="pi pi-search" />
+        <p:inputText placeholder="Search" />
+    </span>
+
+    <h5>Right Icon</h5>
+    <span class="ui-input-icon-right">
+        <i class="pi pi-spin pi-spinner" />
+        <p:inputText />
+    </span>
+
+    <h5>Help Text</h5>
+    <div class="p-field">
+        <p:outputLabel for="username1" styleClass="p-d-block">Username</p:outputLabel>
+        <p:inputText id="username1" styleClass="p-d-block"/>
+        <small class="p-d-block">Enter your username to reset your password.</small>
+    </div>
+
+    <h5>Invalid</h5>
+    <div class="p-field">
+        <p:outputLabel for="username2" styleClass="p-d-block">Username</p:outputLabel>
+        <p:inputText id="username2" styleClass="p-d-block ui-state-error"/>
+        <small class="p-d-block ui-state-error">Username is not available.</small>
+    </div>
+
+    <h5>Disabled</h5>
+    <p:inputText disabled="true" />
+</div>
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+

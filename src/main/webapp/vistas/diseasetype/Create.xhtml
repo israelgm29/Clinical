@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiseasetypeCreateDlg" widgetVar="DiseasetypeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDiseasetypeTitle}">
+            <h:form id="DiseasetypeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diseasetypeController.selected != null}">
+                          <p:outputLabel value="#{bundle.CreateDiseasetypeLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{diseasetypeController.selected.name}" title="#{bundle.CreateDiseasetypeTitle_name}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{diseasetypeController.create}" value="#{bundle.Save}" update="display,:DiseasetypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'DiseasetypeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DiseasetypeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

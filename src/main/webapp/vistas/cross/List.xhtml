@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCrossTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="CrossListForm">
+                <p:panel header="#{bundle.ListCrossTitle}">
+                    <p:dataTable id="datalist" value="#{crossController.items}" var="item"
+                                 selectionMode="single" selection="#{crossController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idCross}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_idCross}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCross}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_senseorgans}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.senseorgans}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_respiratory}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.respiratory}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_cardiovascular}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.cardiovascular}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_digestive}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.digestive}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_genital}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.genital}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_urinary}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.urinary}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_skeletalmuscle}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.skeletalmuscle}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_endocrine}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.endocrine}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_lymphatic}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.lymphatic}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_nervious}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.nervious}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_observation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observation}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCrossTitle_medicalrecordId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.medicalrecordId}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{crossController.prepareCreate}" update=":CrossCreateForm" oncomplete="PF('CrossCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CrossViewForm" oncomplete="PF('CrossViewDialog').show()" disabled="#{empty crossController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CrossEditForm" oncomplete="PF('CrossEditDialog').show()" disabled="#{empty crossController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{crossController.destroy}" update=":growl,datalist" disabled="#{empty crossController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

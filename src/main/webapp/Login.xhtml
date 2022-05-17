@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="webjars" name="primeflex/3.1.0/primeflex.css" />
+        <h:outputStylesheet library="css" name="primeflex.css" />
+    </h:head>
+    <h:body>
+        <p:growl id="message" sticky="true" showSummary="true" showDetail="true"  />
+        <h:form> 
+            <div id="asd" class="h-screen flex align-items-center justify-content-center bg-white-alpha-50">
+                <div class="ui-fluid">
+                    <div class="text-center mb-5">
+                        <p:graphicImage value="#{resource['images/bg_login.svg']}" alt="Image" height="250px" class="mb-2"/>
+                        <div class="text-900 text-3xl font-medium mb-3">Bienvenido inicie sesion para continuar</div>
+                    </div>
+                    <div class="field">
+                        <label for="roleId">Rol de Usuario</label>
+
+                        <p:selectOneMenu id="roleId" binding="#{rol}" value="#{loginController.role}" class="w-full" placeholder="Seleccionar rol" required="true" requiredMessage="Seleccionar el rol de su cuenta">
+                            
+                            <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+                            <f:selectItem itemLabel="Analista" itemValue="Analista" />
+                            <f:selectItem itemLabel="Medico" itemValue="Medico"/>
+                            <f:selectItem itemLabel="Enfermeria" itemValue="Enfermeria"/>
+                            <f:selectItem/>
+                        </p:selectOneMenu>
+                        <p:message for="roleId" />
+                    </div>
+
+                    <div class="field">
+                        <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+
+                        <p:inputText id="email" value="#{loginController.email}" label="Email" required="true" requiredMessage="Ingrese su correo electronico" class="inputfield w-full"/>
+                        <p:message for="email" />
+                    </div>
+
+                    <div class="p-field">
+                        <label for="password">Password</label>
+                        <p:password id="password"  value="#{loginController.password}" required="true" requiredMessage="Ingrese su contraseña"  toggleMask="true" class="w-full" />
+                        <p:message for="password" />
+                    </div>
+
+
+                    <div class="flex align-items-center justify-content-between mb-6">
+                        <div class="flex align-items-center">
+
+                            <label for="rememberme1">Remember me</label>
+                        </div>
+                        <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <p:commandButton  value="Iniciar Sesión" action="#{loginController.loginUser()}" ajax="false"  update="message, @form" process="password, email" validateClient="true" class="w-full">
+                        <f:param name="rol" value="#{rol.value}"/>
+                    </p:commandButton>
+
+                </div>
+            </div>
+        </h:form>
+
+    </h:body>
+</html>
+

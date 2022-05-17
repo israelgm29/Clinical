@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiagnosticViewDlg" widgetVar="DiagnosticViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDiagnosticTitle}">
+            <h:form id="DiagnosticViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diagnosticController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDiagnosticLabel_idDiagnostic}"/>
+                        <h:outputText value="#{diagnosticController.selected.idDiagnostic}" title="#{bundle.ViewDiagnosticTitle_idDiagnostic}"/>
+                        <h:outputText value="#{bundle.ViewDiagnosticLabel_createAt}"/>
+                        <h:outputText value="#{diagnosticController.selected.createAt}" title="#{bundle.ViewDiagnosticTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDiagnosticLabel_createBy}"/>
+                        <h:outputText value="#{diagnosticController.selected.createBy}" title="#{bundle.ViewDiagnosticTitle_createBy}"/>
+                        <h:outputText value="#{bundle.ViewDiagnosticLabel_updateAt}"/>
+                        <h:outputText value="#{diagnosticController.selected.updateAt}" title="#{bundle.ViewDiagnosticTitle_updateAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDiagnosticLabel_updateBy}"/>
+                        <h:outputText value="#{diagnosticController.selected.updateBy}" title="#{bundle.ViewDiagnosticTitle_updateBy}"/>
+                        <h:outputText value="#{bundle.ViewDiagnosticLabel_diseasId}"/>
+                        <h:outputText value="#{diagnosticController.selected.diseasId}" title="#{bundle.ViewDiagnosticTitle_diseasId}"/>
+                        <h:outputText value="#{bundle.ViewDiagnosticLabel_mediacalrecordId}"/>
+                        <h:outputText value="#{diagnosticController.selected.mediacalrecordId}" title="#{bundle.ViewDiagnosticTitle_mediacalrecordId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DiagnosticViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

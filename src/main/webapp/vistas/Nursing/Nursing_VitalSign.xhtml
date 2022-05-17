@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/components/nursing_component/nursing_template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Enfermeria"></h:outputText>
+        </ui:define>
+        <ui:define class="w-screen" name="body">
+
+
+            <h:form id="formVital" prependId="false" class="mt-3">
+
+                <div class="ui-fluid formgrid grid card">
+                    <div class="col-6">
+                        <p:panel class="" id="patientPanel" header="Paciente" >
+
+                            <div class="field">
+                                <p:selectOneMenu id="pacient"  binding="#{paciente}" value="#{vitalsignController.patient}"  filterPlaceholder="Buscar Paciente" 
+                                                 var="c"
+                                                 filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Seleccionar Paciente" itemValue="#{null}" itemDisabled="true" noSelectionOption="true"/>
+                                    <f:selectItems  value="#{patientController.itemsAvailableSelectOne}" var="patients"
+                                                    itemLabel="#{patients}" itemValue="#{patients}"/>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Paciente"/>
+                                        </f:facet>
+                                        <h:outputText value="#{c.firstname} #{c.lastname}"/>
+                                    </p:column>
+
+                                    <f:ajax execute="@this"  event="change" render="name dni hc" />
+                                </p:selectOneMenu>
+
+                            </div>
+                            <div class="field" >
+
+                                <div class="p-col-12 p-md-4">
+                                    <div class="card">
+                                        <div class="grid">
+                                            <div class="col-8">
+                                                <div class="grid">
+                                                    <div class="col-12">
+                                                        <h1>  <p:outputLabel id="name" value="#{paciente.value.firstname} #{paciente.value.lastname}"/></h1>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p:outputLabel id="dni" value="CI: #{paciente.value.dni}"/>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p:outputLabel id="hc" value="HC: #{paciente.value.hc}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 flex align-items-center">
+                                                <p:avatar size="xlarge" shape="circle">
+                                                    <p:graphicImage  name="/images/patient.png"/>
+                                                </p:avatar>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </div>
+                    <div class="col-6">
+                        <p:panel id="medicPanel" header="Medico" toggleable="true"  toggleSpeed="500"
+                                 closeSpeed="500" widgetVar="panel">
+
+                            <p:ajax event="toggle" listener="#{panelView.onToggle}" update="growl"/>
+
+                            <div class="field">
+                                <p:selectOneMenu binding="#{medico}" value="#{vitalsignController.medic}"  filterPlaceholder="Buscar Paciente" 
+                                                 panelStyle="width:180px" var="c"
+                                                 filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Seleccionar medico" itemValue="#{null}" itemDisabled="true" noSelectionOption="true"/>
+                                    <f:selectItems  value="#{medicController.itemsAvailableSelectOne}" var="medic"
+                                                    itemLabel="#{medic}" itemValue="#{medic}"/>
+
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Medicos"/>
+                                        </f:facet>
+                                        <h:outputText value="#{c.firstname} #{c.lastname}"/>
+                                    </p:column>
+                                    <p:ajax process="@this" event="change" update="medic_name, medic_dni, medic_e, medic_especialist" />
+
+                                </p:selectOneMenu>
+
+                            </div>
+                            <div class="field">
+
+                                <div class="col-12 ">
+                                    <div  class="card">
+                                        <div class="grid">
+                                            <div class="col-4 flex justify-content-center align-items-center">
+                                                <p:avatar size="xlarge" shape="circle">
+                                                    <p:graphicImage  name="/images/medic.png"/>
+                                                </p:avatar>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="grid">
+                                                    <div class="col-12">
+                                                        <h1>  <p:outputLabel id="medic_name" value="#{medico.value.firstname} #{medico.value.lastname}"/></h1>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <strong>C.I:</strong>  <p:outputLabel id="medic_dni" value=" #{medico.value.dni}"/>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <strong>Reg Prof:</strong>  <p:outputLabel id="medic_e" value=" #{medico.value.regprofesional}"/>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <strong>Especialidad :</strong> <p:outputLabel id="medic_especialist" value=" #{medico.value.specialistList}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </p:panel>
+                    </div>
+
+                </div>
+                <p:panel id="singPanel" class="mt-4" header="Signos Vitales">
+
+                    <div class="ui-fluid formgrid grid mt-3">
+                        <div class="field col-12 md:col-6">
+                            <h:outputText value="#{bundle.ViewMedicalrecordLabel_reason}"/>
+                            <p:inputTextarea id="reason" value="#{vitalsignController.reason}" rows="4" title="#{bundle.CreateMedicalrecordTitle_reason}" required="true" requiredMessage="#{bundle.CreateMedicalrecordRequiredMessage_reason}"/>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <h:outputText value="#{bundle.ViewMedicalrecordLabel_currentIllness}"/>
+                            <p:inputTextarea id="currentIllness" value="#{vitalsignController.curcurrentIllness}" rows="4" title="#{bundle.CreateMedicalrecordTitle_currentIllness}" required="true" requiredMessage="#{bundle.CreateMedicalrecordRequiredMessage_currentIllness}"/>
+                        </div>
+                        <p:divider />
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_temperature}" for="temperature" />
+                            <p:spinner id="temperature" value="#{vitalsignController.selected.temperature}" title="#{bundle.CreateVitalsignTitle_temperature}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_temperature}"/>
+
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_systolicpresure}" for="systolicpresure" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-solid fa-droplet"></i></div>
+                                <p:spinner id="systolicpresure" placeholder="Presión arterial sistólica" value="#{vitalsignController.selected.systolicpresure}" title="#{bundle.CreateVitalsignTitle_systolicpresure}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_systolicpresure}"/>
+                            </div>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_diastolicpresure}" for="diastolicpresure" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-solid fa-stopwatch"></i></div>
+                                <p:spinner id="diastolicpresure" placeholder="Presión arterial diastólica" value="#{vitalsignController.selected.diastolicpresure}" title="#{bundle.CreateVitalsignTitle_diastolicpresure}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_diastolicpresure}"/>
+                            </div>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_pulse}" for="pulse" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-solid fa-heart-pulse"></i></div>
+                                <p:spinner id="pulse" placeholder="Pulso" value="#{vitalsignController.selected.pulse}" title="#{bundle.CreateVitalsignTitle_pulse}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_pulse}"/>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_breathingfrecuency}" for="breathingfrecuency" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-solid fa-lungs"></i></div>
+                                <p:spinner id="breathingfrecuency" placeholder="Frecuencia Respiratoria" value="#{vitalsignController.selected.breathingfrecuency}" title="#{bundle.CreateVitalsignTitle_breathingfrecuency}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_breathingfrecuency}"/>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_oxygensaturation}" for="oxygensaturation" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-solid fa-stethoscope"></i></div>
+                                <p:spinner id="oxygensaturation"  placeholder="Saturación de Oxigeno" value="#{vitalsignController.selected.oxygensaturation}" title="#{bundle.CreateVitalsignTitle_oxygensaturation}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_oxygensaturation}"/>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_tall}" for="tall" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-brands fa-creative-commons-by"></i></div>
+                                <p:spinner id="tall"  placeholder="Altura en centimetros" value="#{vitalsignController.selected.tall}" title="#{bundle.CreateVitalsignTitle_tall}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_tall}"/>
+                                <div class="ui-inputgroup-addon">cm</div>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_weight}" for="weight" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-solid fa-weight-scale"></i></div>
+                                <p:spinner id="weight"  placeholder="Peso en Kilogramos" value="#{vitalsignController.selected.weight}" title="#{bundle.CreateVitalsignTitle_weight}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_weight}"/>
+                                <div class="ui-inputgroup-addon">Kg</div>
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="#{bundle.CreateVitalsignLabel_mass}" for="mass" />
+                            <div class="ui-inputgroup">
+                                <div class="ui-inputgroup-addon"><i class="fa-solid fa-hospital-user"></i></div>
+                                <p:spinner id="mass" placeholder="Indice de masa corporal" value="#{vitalsignController.selected.mass}" title="#{bundle.CreateVitalsignTitle_mass}" required="true" requiredMessage="#{bundle.CreateVitalsignRequiredMessage_mass}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <p:divider />
+                    <div class="col-12 flex flex-row-reverse flex-wrap">
+                        <div class="flex align-items-center justify-content-center m-2">
+                            <p:commandButton  class="ms-2 ui-button-raised ui-button-flat" value="Limpiar" icon="pi pi-undo">
+                                <p:ajax update="formVital  patientPanel medicPanel pacient singPanel  name dni hc" resetValues="true"   />
+                            </p:commandButton>
+                        </div>
+                        <div class="flex align-items-center justify-content-center m-2">
+                            <p:commandButton icon="fa-regular fa-floppy-disk"  actionListener="#{vitalsignController.create}" value="#{bundle.Save}" update="singPanel,:growl" >
+
+                            </p:commandButton>
+                        </div>
+                    </div>
+                </p:panel>
+
+            </h:form>
+
+
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProfileEditDlg" widgetVar="ProfileEditDialog" modal="true" width="75%" resizable="false" appendTo="@(body)" header="#{bundle.EditProfileTitle}">
+            <h:form id="ProfileEditForm" enctype="multipart/form-data">
+                <h:panelGroup id="display">
+                    <div class="ui-fluid formgrid grid">
+                        <p:divider align="left">
+                            <div class="inline-flex ai-center">
+                                <i class="pi pi-tags mr-2 "/>
+                                <b class="text-teal-500">Información Personal</b>
+                            </div>
+                        </p:divider>
+                        <div class="formgrid grid">
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_lastname}" for="lastname" />
+                                <p:inputText id="firstname" value="#{profileController.selected.firstname}" title="#{bundle.CreateProfileTitle_firstname}" required="true" requiredMessage="#{bundle.CreateProfileRequiredMessage_firstname}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_firstname}" for="firstname" />
+                                <p:inputText id="lastname" value="#{profileController.selected.lastname}" title="#{bundle.CreateProfileTitle_lastname}" required="true" requiredMessage="#{bundle.CreateProfileRequiredMessage_lastname}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_dni}" for="dni" />
+                                <p:inputText id="dni" value="#{profileController.selected.dni}" title="#{bundle.CreateProfileTitle_dni}" required="true" requiredMessage="#{bundle.CreateProfileRequiredMessage_dni}"/>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_passport}" for="passport" />
+                                <p:inputText id="passport" value="#{profileController.selected.passport}" title="#{bundle.CreateProfileTitle_passport}" />
+
+                            </div>
+                          
+                            <p:divider align="left">
+                                <div class="d-inline-flex ai-center">
+                                    <i class="pi pi-user text-primary"/>
+                                    <b class="text-teal-500">Información de Contacto</b>
+                                </div>
+                            </p:divider>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_telephone}" for="telephone" />
+                                <p:inputText id="telephone" value="#{profileController.selected.telephone}" title="#{bundle.CreateProfileTitle_telephone}" />
+
+                            </div>
+                            <div class="field col-12 md:col-3">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_mobile}" for="mobile" />
+                                <p:inputText id="mobile" value="#{profileController.selected.mobile}" title="#{bundle.CreateProfileTitle_mobile}" required="true" requiredMessage="#{bundle.CreateProfileRequiredMessage_mobile}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_email}" for="email" />
+                                <p:inputText id="email" value="#{profileController.selected.email}" title="#{bundle.CreateProfileTitle_email}" required="true" requiredMessage="#{bundle.CreateProfileRequiredMessage_email}"/>
+
+                            </div>
+                            <div class="field col-12 md:col-12">
+                                <p:outputLabel value="#{bundle.CreateProfileLabel_address}" for="address" />
+                                <p:inputTextarea id="address" value="#{profileController.selected.address}" required="true" requiredMessage="#{bundle.CreateProfileRequiredMessage_address}"/>
+
+                            </div>
+                            <p:divider align="left">
+                                <div class="d-inline-flex ai-center">
+                                    <i class="pi pi-camera mr-2"/>
+                                    <b class="text-teal-500">Añadir Imagen del Paciente</b>
+                                </div>
+                            </p:divider>
+                            <div class="field col-12 md:col-12">
+                                <p:fileUpload id="image" value="#{profileController.fileimage}"  mode="simple" skinSimple="true" 
+                                              update="growl"
+                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                              validateContentType="true" accept=".gif,.jpg,.jpeg,.png"
+                                              label="Subir imagen"/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p:commandButton actionListener="#{profileController.update}" value="#{bundle.Save}" update="display,:ProfileListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProfileEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProfileEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

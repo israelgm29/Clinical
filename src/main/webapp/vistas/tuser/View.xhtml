@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TuserViewDlg" widgetVar="TuserViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTuserTitle}">
+            <h:form id="TuserViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tuserController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTuserLabel_idUser}"/>
+                        <h:outputText value="#{tuserController.selected.idUser}" title="#{bundle.ViewTuserTitle_idUser}"/>
+                        <h:outputText value="#{bundle.ViewTuserLabel_createAt}"/>
+                        <h:outputText value="#{tuserController.selected.createAt}" title="#{bundle.ViewTuserTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTuserLabel_deleteAt}"/>
+                        <h:outputText value="#{tuserController.selected.deleteAt}" title="#{bundle.ViewTuserTitle_deleteAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTuserLabel_editAt}"/>
+                        <h:outputText value="#{tuserController.selected.editAt}" title="#{bundle.ViewTuserTitle_editAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTuserLabel_editBy}"/>
+                        <h:outputText value="#{tuserController.selected.editBy}" title="#{bundle.ViewTuserTitle_editBy}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTuserLabel_deleteBy}"/>
+                        <h:outputText value="#{tuserController.selected.deleteBy}" title="#{bundle.ViewTuserTitle_deleteBy}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTuserLabel_verificationEmail}"/>
+                        <p:selectBooleanCheckbox value="#{tuserController.selected.verificationEmail}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewTuserLabel_isActive}"/>
+                        <p:selectBooleanCheckbox value="#{tuserController.selected.isActive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewTuserLabel_password}"/>
+                        <h:outputText value="#{tuserController.selected.password}" title="#{bundle.ViewTuserTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewTuserLabel_idProfile}"/>
+                        <h:outputText value="#{tuserController.selected.idProfile}" title="#{bundle.ViewTuserTitle_idProfile}"/>
+                        <h:outputText value="#{bundle.ViewTuserLabel_roleId}"/>
+                        <h:outputText value="#{tuserController.selected.roleId}" title="#{bundle.ViewTuserTitle_roleId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TuserViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

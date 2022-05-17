@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MedicalrecordViewDlg" widgetVar="MedicalrecordViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMedicalrecordTitle}">
+            <h:form id="MedicalrecordViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{medicalrecordController.selected != null}">
+                         <h:outputText value="#{bundle.ViewMedicalrecordLabel_createAt}"/>
+                        <h:outputText value="#{medicalrecordController.selected.createAt}" title="#{bundle.ViewMedicalrecordTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_editAt}"/>
+                        <h:outputText value="#{medicalrecordController.selected.editAt}" title="#{bundle.ViewMedicalrecordTitle_editAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_delete}"/>
+                        <p:selectBooleanCheckbox value="#{medicalrecordController.selected.delete}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_reason}"/>
+                        <h:outputText value="#{medicalrecordController.selected.reason}" title="#{bundle.ViewMedicalrecordTitle_reason}"/>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_currentIllness}"/>
+                        <h:outputText value="#{medicalrecordController.selected.currentIllness}" title="#{bundle.ViewMedicalrecordTitle_currentIllness}"/>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_done}"/>
+                        <p:selectBooleanCheckbox value="#{medicalrecordController.selected.done}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_canceled}"/>
+                        <p:selectBooleanCheckbox value="#{medicalrecordController.selected.canceled}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_medicId}"/>
+                        <h:outputText value="#{medicalrecordController.selected.medicId}" title="#{bundle.ViewMedicalrecordTitle_medicId}"/>
+                        <h:outputText value="#{bundle.ViewMedicalrecordLabel_patientId}"/>
+                        <h:outputText value="#{medicalrecordController.selected.patientId}" title="#{bundle.ViewMedicalrecordTitle_patientId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MedicalrecordViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

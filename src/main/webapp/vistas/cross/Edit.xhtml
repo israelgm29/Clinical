@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CrossEditDlg" widgetVar="CrossEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCrossTitle}">
+            <h:form id="CrossEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{crossController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCrossLabel_idCross}" for="idCross" />
+                        <p:inputText id="idCross" value="#{crossController.selected.idCross}" title="#{bundle.EditCrossTitle_idCross}" required="true" requiredMessage="#{bundle.EditCrossRequiredMessage_idCross}"/>
+                        <p:outputLabel value="#{bundle.EditCrossLabel_senseorgans}" for="senseorgans" />
+                        <p:selectBooleanCheckbox id="senseorgans" value="#{crossController.selected.senseorgans}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_respiratory}" for="respiratory" />
+                        <p:selectBooleanCheckbox id="respiratory" value="#{crossController.selected.respiratory}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_cardiovascular}" for="cardiovascular" />
+                        <p:selectBooleanCheckbox id="cardiovascular" value="#{crossController.selected.cardiovascular}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_digestive}" for="digestive" />
+                        <p:selectBooleanCheckbox id="digestive" value="#{crossController.selected.digestive}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_genital}" for="genital" />
+                        <p:selectBooleanCheckbox id="genital" value="#{crossController.selected.genital}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_urinary}" for="urinary" />
+                        <p:selectBooleanCheckbox id="urinary" value="#{crossController.selected.urinary}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_skeletalmuscle}" for="skeletalmuscle" />
+                        <p:selectBooleanCheckbox id="skeletalmuscle" value="#{crossController.selected.skeletalmuscle}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_endocrine}" for="endocrine" />
+                        <p:selectBooleanCheckbox id="endocrine" value="#{crossController.selected.endocrine}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_lymphatic}" for="lymphatic" />
+                        <p:selectBooleanCheckbox id="lymphatic" value="#{crossController.selected.lymphatic}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_nervious}" for="nervious" />
+                        <p:selectBooleanCheckbox id="nervious" value="#{crossController.selected.nervious}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_observation}" for="observation" />
+                        <p:inputText id="observation" value="#{crossController.selected.observation}" title="#{bundle.EditCrossTitle_observation}" />
+                        <p:outputLabel value="#{bundle.EditCrossLabel_medicalrecordId}" for="medicalrecordId" />
+                        <p:selectOneMenu id="medicalrecordId" value="#{crossController.selected.medicalrecordId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicalrecordController.itemsAvailableSelectOne}"
+                                           var="medicalrecordIdItem"
+                                           itemValue="#{medicalrecordIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{crossController.update}" value="#{bundle.Save}" update="display,:CrossListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CrossEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CrossEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TuserCreateDlg" widgetVar="TuserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTuserTitle}">
+            <h:form id="TuserCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tuserController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_idUser}" for="idUser" />
+                        <p:inputText id="idUser" value="#{tuserController.selected.idUser}" title="#{bundle.CreateTuserTitle_idUser}" required="true" requiredMessage="#{bundle.CreateTuserRequiredMessage_idUser}"/>
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_createAt}" for="createAt" />
+                        <p:calendar id="createAt" pattern="HH:mm:ss" value="#{tuserController.selected.createAt}" title="#{bundle.EditTuserTitle_createAt}" required="true" requiredMessage="#{bundle.EditTuserRequiredMessage_createAt}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_deleteAt}" for="deleteAt" />
+                        <p:calendar id="deleteAt" pattern="HH:mm:ss" value="#{tuserController.selected.deleteAt}" title="#{bundle.EditTuserTitle_deleteAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_editAt}" for="editAt" />
+                        <p:calendar id="editAt" pattern="HH:mm:ss" value="#{tuserController.selected.editAt}" title="#{bundle.EditTuserTitle_editAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_editBy}" for="editBy" />
+                        <p:calendar id="editBy" pattern="HH:mm:ss" value="#{tuserController.selected.editBy}" title="#{bundle.EditTuserTitle_editBy}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_deleteBy}" for="deleteBy" />
+                        <p:calendar id="deleteBy" pattern="HH:mm:ss" value="#{tuserController.selected.deleteBy}" title="#{bundle.EditTuserTitle_deleteBy}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_verificationEmail}" for="verificationEmail" />
+                        <p:selectBooleanCheckbox id="verificationEmail" value="#{tuserController.selected.verificationEmail}" />
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_isActive}" for="isActive" />
+                        <p:selectBooleanCheckbox id="isActive" value="#{tuserController.selected.isActive}" />
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{tuserController.selected.password}" title="#{bundle.CreateTuserTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_idProfile}" for="idProfile" />
+                        <p:selectOneMenu id="idProfile" value="#{tuserController.selected.idProfile}" >
+                            <f:selectItems value="#{profileController.itemsAvailableSelectOne}"
+                                           var="idProfileItem"
+                                           itemValue="#{idProfileItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTuserLabel_roleId}" for="roleId" />
+                        <p:selectOneMenu id="roleId" value="#{tuserController.selected.roleId}" required="true" requiredMessage="#{bundle.EditTuserRequiredMessage_roleId}">
+                           
+                            <f:selectItems itemDescription="asd" value="#{roleController.itemsAvailableSelectOne}"
+                                           var="roleIdItem"
+                                           itemValue="#{roleIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tuserController.create}" value="#{bundle.Save}" update="display,:TuserListForm:datalist,:growl" oncomplete="handleSubmit(args,'TuserCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TuserCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

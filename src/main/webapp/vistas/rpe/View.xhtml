@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RpeViewDlg" widgetVar="RpeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRpeTitle}">
+            <h:form id="RpeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{rpeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRpeLabel_idRep}"/>
+                        <h:outputText value="#{rpeController.selected.idRep}" title="#{bundle.ViewRpeTitle_idRep}"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_createAt}"/>
+                        <h:outputText value="#{rpeController.selected.createAt}" title="#{bundle.ViewRpeTitle_createAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRpeLabel_updateAt}"/>
+                        <h:outputText value="#{rpeController.selected.updateAt}" title="#{bundle.ViewRpeTitle_updateAt}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRpeLabel_head}"/>
+                        <p:selectBooleanCheckbox value="#{rpeController.selected.head}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_neck}"/>
+                        <p:selectBooleanCheckbox value="#{rpeController.selected.neck}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_chest}"/>
+                        <p:selectBooleanCheckbox value="#{rpeController.selected.chest}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_abdomen}"/>
+                        <p:selectBooleanCheckbox value="#{rpeController.selected.abdomen}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_pelvis}"/>
+                        <p:selectBooleanCheckbox value="#{rpeController.selected.pelvis}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_extremities}"/>
+                        <p:selectBooleanCheckbox value="#{rpeController.selected.extremities}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_observation}"/>
+                        <h:outputText value="#{rpeController.selected.observation}" title="#{bundle.ViewRpeTitle_observation}"/>
+                        <h:outputText value="#{bundle.ViewRpeLabel_medicalrecordId}"/>
+                        <h:outputText value="#{rpeController.selected.medicalrecordId}" title="#{bundle.ViewRpeTitle_medicalrecordId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RpeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

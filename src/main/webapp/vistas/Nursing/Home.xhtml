@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/components/nursing_component/nursing_template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Enfermeria"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            
+                <div class="grid mt-3">
+                    <div class="col-12 md:col-6 lg:col-3">
+                        <div class="surface-card shadow-2 p-3 border-round">
+                            <div class="flex justify-content-between mb-3">
+                                <div>
+                                    <span class="block text-500 font-medium mb-3">Pacientes registrados</span>
+                                    <div class="text-900 font-medium text-xl">#{patientController.countPatient()}</div>
+                                </div>
+                                <div class="flex align-items-center justify-content-center bg-blue-100 border-round"
+                                     style="width:2.5rem;height:2.5rem">
+                                    <i class="fa-solid fa-bed-pulse text-blue-500 text-xl"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6 lg:col-3">
+                        <div class="surface-card shadow-2 p-3 border-round">
+                            <div class="flex justify-content-between mb-3">
+                                <div>
+                                    <span class="block text-500 font-medium mb-3">Pacientes Atendidos Hoy</span>
+                                    <div class="text-900 font-medium text-xl">2 Pacientes</div>
+                                </div>
+                                <div class="flex align-items-center justify-content-center bg-orange-100 border-round"
+                                     style="width:2.5rem;height:2.5rem">
+                                    <i class="pi pi-map-marker text-orange-500 text-xl"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6 lg:col-3">
+                        <div class="surface-card shadow-2 p-3 border-round">
+                            <div class="flex justify-content-between mb-3">
+                                <div>
+                                    <span class="block text-500 font-medium mb-3">Signos vitales tomados</span>
+                                    <div class="text-900 font-medium text-xl">2 Registrados</div>
+                                </div>
+                                <div class="flex align-items-center justify-content-center bg-cyan-100 border-round"
+                                     style="width:2.5rem;height:2.5rem">
+                                    <i class="fa-solid fa-heart-pulse text-pink-500 text-xl"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-6 lg:col-3">
+                        <div class="surface-card shadow-2 p-3 border-round">
+                            <div class="flex justify-content-between mb-3">
+                                <div>
+                                    <span class="block text-500 font-medium mb-3">Fichas medicas atendidas</span>
+                                    <div class="text-900 font-medium text-xl">152 Atendidas</div>
+                                </div>
+                                <div class="flex align-items-center justify-content-center bg-purple-100 border-round"
+                                     style="width:2.5rem;height:2.5rem">
+                                    <i class="fa-solid fa-file-medical text-purple-500 text-xl"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                    <div class="grid mt-4">
+                        <div class="col-12 md:col-6 flex flex justify-content-center align-items-center ">
+                            <i class="fa-solid fa-heart-pulse fa-10x fa-beat" style="--fa-animation-duration: 1s; color: red;"></i>
+
+                        </div>
+                        <h:form>
+                            <div class="col-12 md:col-6 md:pl-6">
+
+                                <div class="text-3xl font-bold text-900 mb-3">Bienvenido : #{userlog.idProfile.firstname}  #{userlog.idProfile.lastname}</div>
+
+                                <div class="text-700 mb-5 line-height-3 mb-5">Modulos</div>
+
+                                <div class="flex align-items-center mb-4">
+                                    <i class="pi pi-check text-green-600 mr-3"></i>
+                                    <div>
+                                        <div class="text-900 font-medium mb-2">Consultar Pacientes</div>
+                                        <p:commandButton  icon="fa-regular fa-address-book"/>
+                                    </div>
+                                </div>
+                                <div class="flex align-items-center mb-4">
+                                    <i class="pi pi-check text-green-600 mr-3"></i>
+                                    <div>
+                                        <div class="text-900 font-medium mb-2">Consultar Fichas Medicas</div>
+                                        <p:commandButton icon="fa-regular fa-id-badge"/>
+                                    </div>
+                                </div>
+                                <div class="flex align-items-center">
+                                    <i class="pi pi-check text-green-600 mr-3"></i>
+                                    <div>
+                                        <div class="text-900 font-medium mb-2">Registrar Signos Vitales</div>
+                                        <p:linkButton outcome="/vistas/Nursing/Nursing_VitalSign.xhtml"   icon="fa-solid fa-heart-pulse"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                
+            
+
+
+        </ui:define>
+    </ui:composition>
+</html>
+

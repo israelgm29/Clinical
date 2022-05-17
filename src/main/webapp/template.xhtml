@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="webjars" name="primeflex/3.1.0/primeflex.css" />
+        <h:outputStylesheet library="css" name="primeflex.css" />
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="#{bundle.Home}" action="/index" icon="ui-icon-home" >
+                  
+                </p:menuitem>
+                <p:submenu label="#{bundle.Maintenance}" >
+                    <p:menuitem value="Enfermedades" action="/vistas/disease/List.xhtml">
+
+                    </p:menuitem>
+                    <p:menuitem value="Tipos de enfermedades" action="/vistas/diseasetype/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Examenes" action="/vistas/exam/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Tipo de examenes" action="/vistas/examtype/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Medicos" action="/vistas/medic/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Medicalrecord" action="/vistas/medicalrecord/List.xhtml">
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Especialidades Medicas" action="/vistas/medicalspecialis/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Modulos" action="/vistas/module/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Pacientes" action="/vistas/patient/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Permisos" action="/vistas/permision/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Usuarios" action="/vistas/profile/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Role" action="/vistas/role/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Especialistas" action="/vistas/specialist/List.xhtml" >
+                      
+                    </p:menuitem>
+                    <p:menuitem value="Signos vitales" action="/vistas/vitalsign/List.xhtml" >
+                      
+                    </p:menuitem>
+                </p:submenu>
+                <p:submenu label="Mantenimiento de Hospital" >
+                    <p:submenu class="w-auto" label="Especialidades Medicas" >
+                        <p:submenu class="w-auto" label="Nueva" icon="pi pi-fw pi-plus">
+                            <p:menuitem value="Especialidad" action="/vistas/medicalspecialis/List.xhtml"  icon="pi pi-fw pi-video"/>
+                        </p:submenu>
+                        <p:submenu class="w-auto" label="Asignar" icon="pi pi-fw pi-plus">
+                            <p:menuitem value="Especialista" action="/vistas/specialist/List.xhtml" />
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:divider />
+
+                    <p:submenu label="Tipo de Examenes" icon="pi pi-fw pi-file">
+                        <p:menuitem value="Agregar nuevo" icon="pi pi-fw pi-plus"/>
+                    </p:submenu>
+                    <p:submenu label="Tipo de enfermedades" icon="pi pi-fw pi-calendar">
+
+                        <p:menuitem value="Agregar nueva" icon="pi pi-fw pi-plus"/>
+
+                    </p:submenu>
+                </p:submenu>
+
+
+                <p:submenu label="Pacientes" icon="pi pi-fw pi-user">
+                    <p:menuitem value="Lista" action="/vistas/patient/List.xhtml" icon="pi pi-fw pi-align-left"/>
+
+                </p:submenu>
+
+                <p:submenu label="Usuarios" icon="pi pi-fw pi-user">
+                    <p:submenu label="Nuevo" icon="pi pi-fw pi-plus">
+                        <p:menuitem value="Medico" icon="pi pi-fw pi-bookmark" action="/vistas/medic/List.xhtml"/>
+                        <p:menuitem value="Otros Usuarios" icon="pi pi-fw pi-video" action="/vistas/profile/List.xhtml"/>
+                    </p:submenu>
+                    <p:divider />
+
+                </p:submenu>
+
+
+
+                <p:divider layout="vertical"/>
+
+                <p:menuitem value="Quit" icon="pi pi-fw pi-power-off"/>
+
+                <f:facet name="options">
+                    <p:avatar size="large"   shape="circle">
+                        <p:graphicImage id="dynaButton" value="show" name="images/user.svg"/>
+                    </p:avatar>
+                    <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom">
+                        <p:submenu label="Options">
+                            <p:menuitem value="Save (Non-Ajax)"  update="growl" ajax="false"
+                                        icon="pi pi-save"/>
+                            <p:menuitem value="Update"  update="growl" icon="pi pi-refresh"/>
+                            <p:menuitem value="Delete" update="growl" icon="pi pi-times"/>
+                        </p:submenu>
+                        <p:submenu label="Navigations">
+                            <p:menuitem value="Website" url="http://www.primefaces.org" icon="pi pi-external-link"/>
+                            <p:menuitem value="Internal"  icon="pi pi-upload"/>
+                        </p:submenu>
+                    </p:menu>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+
+
+        <ui:insert name="footer"/>
+
+        <ui:insert name="body"/>
+
+        <script>
+            $("#menuForm").submit(function (e) {
+                e.preventDefault();
+            });
+        </script>
+    </h:body>
+
+</html>

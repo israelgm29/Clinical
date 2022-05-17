@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiseaseCreateDlg" widgetVar="DiseaseCreateDialog" width="50%" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDiseaseTitle}">
+            <h:form id="DiseaseCreateForm">
+                <h:panelGroup id="display" rendered="#{diseaseController.selected != null}">
+                
+                    <div class="ui-fluid formgrid  grid">
+                        <div class="col-8">
+                            <div class="formgrid grid">
+                                <div class="field col-2">
+                                    <p:outputLabel value="Código" for="code" />
+                                    <p:inputText id="code" placeholder="CIE 10" value="#{diseaseController.selected.code}" title="#{bundle.CreateDiseaseTitle_code}" required="true" requiredMessage="#{bundle.CreateDiseaseRequiredMessage_code}"/>
+
+                                </div>
+                                <div class="field col-10">
+                                    <p:outputLabel value="#{bundle.CreateDiseaseLabel_name}" for="name" />
+                                    <p:inputText id="name" value="#{diseaseController.selected.name}" title="#{bundle.CreateDiseaseTitle_name}" required="true" requiredMessage="#{bundle.CreateDiseaseRequiredMessage_name}"/>
+
+                                </div>
+                                <div class="field col-12">
+                                    <p:outputLabel value="#{bundle.CreateDiseaseLabel_description}" for="description" />
+                                    <p:inputTextarea id="description" rows="5" cols="3" value="#{diseaseController.selected.description}" title="#{bundle.CreateDiseaseTitle_description}" required="true" requiredMessage="#{bundle.CreateDiseaseRequiredMessage_description}"/>
+
+                                </div>
+                                <div class="field col-6">
+                                    <p:outputLabel value="#{bundle.CreateDiseaseLabel_actions}" for="actions" />
+                                    <p:inputText id="actions" value="#{diseaseController.selected.actions}" title="#{bundle.CreateDiseaseTitle_actions}" required="true" requiredMessage="#{bundle.CreateDiseaseRequiredMessage_actions}"/>
+
+                                </div>
+                                <div class="field col-12">
+                                    <p:outputLabel value="#{bundle.CreateDiseaseLabel_diseaseId}" for="diseaseId" />
+                                    <p:selectOneMenu id="diseaseId" value="#{diseaseController.selected.diseaseId}" >
+                                        <f:selectItems value="#{diseasetypeController.itemsAvailableSelectOne}"
+                                                       var="diseaseIdItem"
+                                                       itemValue="#{diseaseIdItem}"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 flex justify-content-center align-items-center">
+                            <p:graphicImage name="/images/disease.png"/>
+                        </div>
+                    </div>
+                    <p:commandButton actionListener="#{diseaseController.create}" value="#{bundle.Save}" update="display,:DiseaseListForm:datalist,:growl" oncomplete="handleSubmit(args,'DiseaseCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DiseaseCreateDialog.hide()"/>
+
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
